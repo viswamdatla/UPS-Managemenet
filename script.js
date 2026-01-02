@@ -101,7 +101,7 @@ async function fetchGoogleSheetsData() {
                     if (data.voltage) devicesData[deviceId].voltage = data.voltage.includes('V') ? data.voltage : data.voltage + 'V';
                     if (data.current) devicesData[deviceId].current = data.current.includes('A') ? data.current : data.current + 'A';
                     if (data.load) devicesData[deviceId].load = data.load.includes('%') ? data.load : data.load + '%';
-                    if (data.runtime) devicesData[deviceId].runtime = data.runtime.includes('m') ? data.runtime : data.runtime + 'm';
+                    if (data.runtime) devicesData[deviceId].runtime = /m$|min$|h$|hr$|hour|hours/i.test(data.runtime) ? data.runtime : data.runtime + 'm';
                     if (data.image) devicesData[deviceId].image = data.image;
                 }
             });
